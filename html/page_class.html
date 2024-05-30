@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page de la classe</title>
     <link rel="stylesheet" href="../css/page_projet_style.css">
 </head>
+
 <body>
     <div class="conteneur">
         <h1 id="nomDeLaClasse"></h1>
@@ -20,26 +22,21 @@
             affichageClass(classId);
         };
 
-        function affichageClass(classId){
-            const url = `http://localhost:8080/ords/restscott/utilisateurs/1`; 
+        function affichageClass(classId) {
+           if (classId == 1){
+            let nomClasse = document.getElementById('nomDeLaClasse');
+            nomClasse.innerHTML = "Application Web";
+           } else if (classId == 2){
 
-            fetch(url)
-                .then((resp) => resp.json())
-                .then(function (data) {
-        console.log(data); 
+           } else if (classId == 3){
 
-        let utilisateurs = data.items;
-        const nomAffi = document.getElementById('nomAffichage');
+           } else if (classId == 4){
 
-        utilisateurs.forEach(function (utilisateurs) {
-            let nomD = utilisateurs.username;
-            nomAffi.innerHTML = `${nomD}`;
-        });
-    })
-    .catch(function (error) {
-        console.log(JSON.stringify(error));
-});
+           } else if (classId == 5){
+
+           }
         }
     </script>
 </body>
+
 </html>
