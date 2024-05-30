@@ -38,6 +38,12 @@
                         if (projet.utilisateurs_user_id === userIdInt) {
                             const projectItem = document.createElement('li');
                             const projectCount = projectList.getElementsByTagName('li').length + 1;
+                            projectItem.className = 'item-projet';
+                            projectItem.innerHTML = `<u><b>Projet ${projectCount}</b> : ${nomDuProjet}</u><br>
+                            <u>Description :</u><br>
+                            ${description}`;
+                            projectList.appendChild(projectItem);
+                            document.getElementById('noProjectMessage').style.display = 'none';
                         }
                     });
 
