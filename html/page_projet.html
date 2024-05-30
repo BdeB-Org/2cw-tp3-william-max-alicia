@@ -21,7 +21,18 @@
         };
 
         function projetSelonUser(userId) {
-
+            const url = `http://localhost:8080/ords/restscott/projet?user_id=${userId}`; 
+    
+            fetch(url)
+                .then((resp) => resp.json())
+                .then(function (data) {
+                    console.log(data); 
+                
+                    
+                })
+                .catch(function (error) {
+                    console.log(JSON.stringify(error));
+            });
         }
     </script>
 </body>
