@@ -15,6 +15,10 @@
         <br>
     </div>
     <script>
+        window.onload = function () {
+            const userId = localStorage.getItem('userCode');
+            fetchProjectsForUser(userId);
+        };
     </script>
 </body>
 </html>
