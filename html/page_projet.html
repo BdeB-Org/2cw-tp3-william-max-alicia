@@ -31,6 +31,12 @@
                     let projet = data.items;
                     const projectList = document.getElementById('listeProjet');
                     
+                    projet.forEach(function (projet) {
+                        let userIdInt = parseInt(userId);
+                        let nomDuProjet = projet.nom_projet
+                        let description = projet.description;
+                    });
+
                 })
                 .catch(function (error) {
                     console.log(JSON.stringify(error));
