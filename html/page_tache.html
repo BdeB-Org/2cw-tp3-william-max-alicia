@@ -9,13 +9,44 @@
 </head>
 <body>
     <div class="fond">
-        <div class="TitreBoite"> 
+        <div class="TitreCase"> 
             <h1 id="Titre"> ProjetNom </h1> 
         </div>
         <div>
             <div class="choisirProjetCase">
         </div>
     </div>
+    <div class="tacheBox">
+        <table id="task-table">
+        <thead>
+            <label for="choisirProjet">Choisir un projet:</label>
+            <select id="choisirProjet" onchange="loadTasks()">
+                <option value="projet1">Projet 1</option>
+                <option value="projet2">Projet 2</option>
+                <option value="projet3">Projet 3</option>
+            </select>
+            <tr>
+                <th>Tâche</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Task 1</td>
+                <td><input type="checkbox" id="task1" onchange="saveTaskStatus('task1')"></td>
+            </tr>
+            <tr>
+                <td>Task 2</td>
+                <td><input type="checkbox" id="task2" onchange="saveTaskStatus('task2')"></td>
+            </tr>
+            <tr>
+                <td>Task 3</td>
+                <td><input type="checkbox" id="task3" onchange="saveTaskStatus('task3')"></td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+</div>
     
 </body>
 </html>
