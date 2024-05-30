@@ -16,3 +16,8 @@ body {
 .h1 {
     margin-bottom: 20px;
 }
+
+.liste-projet {
+    list-style-type: none;
+    padding: 0;
+}
