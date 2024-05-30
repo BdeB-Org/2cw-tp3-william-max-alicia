@@ -9,7 +9,7 @@
 <body>
     <div class="conteneur">
         <h1>Liste des projets</h1>
-        <ul class="liste-projet" id="listProjet">
+        <ul class="liste-projet" id="listeProjet">
             <p id="nonProjetMessage">Aucun projet pour l'instant</p>
         </ul>
         <br>
@@ -28,6 +28,8 @@
                 .then(function (data) {
                     console.log(data); 
                 
+                    let projet = data.items;
+                    const projectList = document.getElementById('listeProjet');
                     
                 })
                 .catch(function (error) {
