@@ -41,13 +41,27 @@
                     console.log(data); 
                 
                     let projet = data.items;
-                    const listeProjet = document.getElementById('listeProjet');
+                    const listeProjet = document.getElementById('listeProjet1');
+
                     
                     projet.forEach(function (projet) {
                         let userIdInt = parseInt(userId);
                         let nomDuProjet = projet.nom_projet
                         let description = projet.description;
                         let classeNom = projet.class_class_id2;
+
+                        if (classeNom == 1){
+                            const listeProjet = document.getElementById('listeProjet1');
+                        } else if (classeNom == 2){
+                            const listeProjet = document.getElementById('listeProjet2');
+                        } else if (classeNom == 3){
+                            const listeProjet = document.getElementById('listeProjet3');
+                        } else if (classeNom == 4){
+                            const listeProjet = document.getElementById('listeProjet4');
+                        } else if (classeNom == 5){
+                            const listeProjet = document.getElementById('listeProjet5');
+                        }
+
                         if (projet.utilisateurs_user_id === userIdInt) {
                             const itemProjet = document.createElement('li');
                             const comptProjet = listeProjet.getElementsByTagName('li').length + 1;
