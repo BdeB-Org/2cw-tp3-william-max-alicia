@@ -22,6 +22,16 @@ body {
     padding: 0;
 }
 
+.liste-projet li {
+    background-color: #fff;
+    margin: 10px 0;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: #290E70;
+    word-wrap: break-word;
+}
+
 .item-projet {
     background-color: #fff;
     color: #3c00a0;
