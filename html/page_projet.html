@@ -97,6 +97,12 @@
                     console.log(JSON.stringify(error));
             });
         }
+
+        function rediriger(classCode){
+        localStorage.setItem('classCode', classCode);
+        window.location.href = "./page_class.html";
+        }
+
     </script>
 </body>
 </html>
