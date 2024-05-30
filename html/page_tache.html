@@ -33,6 +33,18 @@
     </table>
     </div>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        loadTasks();
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const selectProjectsBtn = document.getElementById('retournerPage');
+        selectProjectsBtn.addEventListener('click', () => {
+            window.location.href = 'projects.html';
+        });
+    })
+</script>
     
 </body>
 </html>
