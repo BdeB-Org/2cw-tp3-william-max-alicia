@@ -45,9 +45,9 @@
                             const comptProjet = listeProjet.getElementsByTagName('li').length + 1;
                             itemProjet.className = 'item-projet';
                             if (classeNom == 1){
-                                itemProjet.innerHTML = `<big><b><u>Classe:</b> Application Web</u></big>(Details ici)<br>
-                                <b>Projet ${comptProjet}</b> : ${nomDuProjet}<br>
-                                Description :<br> ${description}` ;
+                                itemProjet.innerHTML = `<big style="font-family: 'OCR A Std', monospace;"><b><u style="font-size: 32px;">Classe:</b> Application Web</u></big>(Details ici)<br>
+                                <big style="font-size: 25px;"><b>Projet ${comptProjet}</b> : ${nomDuProjet}</big><br>
+                                <u><b>Description :</b></u><br> ${description}` ;
                             } else if (classeNom == 2){
                                 itemProjet.innerHTML = `<b>Classe:</b> Programmation Objet 2`;
                             } else if (classeNom == 3){
