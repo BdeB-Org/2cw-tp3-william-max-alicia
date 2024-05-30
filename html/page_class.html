@@ -5,15 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page de la classe</title>
-    <link rel="stylesheet" href="../css/page_projet_style.css">
+    <link rel="stylesheet" href="../css/page_class_style.css">
 </head>
 
 <body>
     <div class="conteneur">
         <h1 id="nomDeLaClasse"></h1>
-        <ul class="liste-class" id="listeClass">
-            <p id="nonClassMessage">Aucune classe pour l'instant</p>
-        </ul>
+        <p class="tab-class" id="tabClass">
+        </p>
         <br>
     </div>
     <script>
@@ -24,9 +23,13 @@
 
         function affichageClass(classId) {
             let nomClasse = document.getElementById('nomDeLaClasse');
+            let elementTexte = document.getElementById('tabClass');
+            elementTexte.className = 'tab-class';
+
 
            if (classId == 1){
             nomClasse.innerHTML = "Application Web";
+            elementTexte.innerHTML = "Le cours 'Application Web' explore la conception et le développement d'applications web, couvrant les principes fondamentaux et les technologies clés.<br> Les étudiants apprennent à concevoir des interfaces utilisateur interactives et conviviales, à utiliser des langages de programmation côté client tels que HTML, CSS et JavaScript, ainsi que des frameworks comme React ou Angular.<br> La gestion des données est abordée à travers des bases de données relationnelles ou NoSQL et des API RESTful.<br>Les sujets avancés incluent la sécurité des applications web, l'optimisation des performances et le déploiement sur des serveurs web. Les aspects collaboratifs du développement web, comme le contrôle de version avec Git et les méthodes de travail en équipe, sont également explorés. En mettant l'accent sur la pratique, ce cours combine théorie et projets pratiques pour doter les étudiants des compétences nécessaires pour créer des applications web fonctionnelles et attrayantes."
            } else if (classId == 2){
             nomClasse.innerHTML = "Programmation Objet 2";
            } else if (classId == 3){
