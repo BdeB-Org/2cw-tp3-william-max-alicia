@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="conteneur">
-        <h1>Liste des projets</h1>
+        <h1>Liste des projets de <span id="nomAffichage">???</span></h1>
         <ul class="liste-projet" id="listeProjet1">
             <p id="nonProjetMessage">Aucun projet pour l'instant</p>
         </ul>
@@ -17,17 +17,25 @@
     <script>
         window.onload = function () {
             const userId = localStorage.getItem('userCode');
+            affichageNom(userId);
             projetSelonUser(userId);
         };
 
         function affichageNom(userId){
-            const url = `http://localhost:8080/ords/restscott/utilisateurs/${userId}`; 
+            const url = `http://localhost:8080/ords/restscott/utilisateurs/1`; 
 
             fetch(url)
                 .then((resp) => resp.json())
                 .then(function (data) {
                     console.log(data); 
 
+                    let utilisateurs = data.items;
+                    const nomAffi = document.getElementById('nomAffichage');
+
+                    utilisateurs.forEach(function (utilisateurs) {
+                        let nomD = utilisateurs.username;
+                        nomAffi.innerHTML = `${nomD}`;
+                    });
                 })
                 .catch(function (error) {
                     console.log(JSON.stringify(error));
@@ -48,7 +56,7 @@
                     
                     projet.forEach(function (projet) {
                         let userIdInt = parseInt(userId);
-                        let nomDuProjet = projet.nom_projet
+                        let nomDuProjet = projet.nom_projet;
                         let description = projet.description;
                         let classeNom = projet.class_class_id2;
 
