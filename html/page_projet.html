@@ -29,20 +29,20 @@
                     console.log(data); 
                 
                     let projet = data.items;
-                    const projectList = document.getElementById('listeProjet');
+                    const listeProjet = document.getElementById('listeProjet');
                     
                     projet.forEach(function (projet) {
                         let userIdInt = parseInt(userId);
                         let nomDuProjet = projet.nom_projet
                         let description = projet.description;
                         if (projet.utilisateurs_user_id === userIdInt) {
-                            const projectItem = document.createElement('li');
-                            const projectCount = projectList.getElementsByTagName('li').length + 1;
-                            projectItem.className = 'item-projet';
-                            projectItem.innerHTML = `<u><b>Projet ${projectCount}</b> : ${nomDuProjet}</u><br>
+                            const itemProjet = document.createElement('li');
+                            const comptProjet = listeProjet.getElementsByTagName('li').length + 1;
+                            itemProjet.className = 'item-projet';
+                            itemProjet.innerHTML = `<u><b>Projet ${comptProjet}</b> : ${nomDuProjet}</u><br>
                             <u>Description :</u><br>
                             ${description}`;
-                            projectList.appendChild(projectItem);
+                            listeProjet.appendChild(itemProjet);
                             document.getElementById('nonProjetMessage').style.display = 'none';
                         }
                     });
