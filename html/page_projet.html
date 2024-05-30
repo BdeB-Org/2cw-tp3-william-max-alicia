@@ -9,8 +9,20 @@
 <body>
     <div class="conteneur">
         <h1>Liste des projets</h1>
-        <ul class="liste-projet" id="listeProjet">
+        <ul class="liste-projet" id="listeProjet1">
             <p id="nonProjetMessage">Aucun projet pour l'instant</p>
+        </ul>
+        <ul class="liste-projet" id="listeProjet2">
+
+        </ul>
+        <ul class="liste-projet" id="listeProjet3">
+
+        </ul>
+        <ul class="liste-projet" id="listeProjet4">
+
+        </ul>
+        <ul class="liste-projet" id="listeProjet5">
+
         </ul>
         <br>
     </div>
@@ -35,6 +47,7 @@
                         let userIdInt = parseInt(userId);
                         let nomDuProjet = projet.nom_projet
                         let description = projet.description;
+                        let classeNom = projet.class_class_id2;
                         if (projet.utilisateurs_user_id === userIdInt) {
                             const itemProjet = document.createElement('li');
                             const comptProjet = listeProjet.getElementsByTagName('li').length + 1;
