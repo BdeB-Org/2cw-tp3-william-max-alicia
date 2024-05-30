@@ -19,6 +19,27 @@
             const classId = localStorage.getItem('classCode');
             affichageClass(classId);
         };
+
+        function affichageClass(classId){
+            const url = `http://localhost:8080/ords/restscott/utilisateurs/1`; 
+
+            fetch(url)
+                .then((resp) => resp.json())
+                .then(function (data) {
+        console.log(data); 
+
+        let utilisateurs = data.items;
+        const nomAffi = document.getElementById('nomAffichage');
+
+        utilisateurs.forEach(function (utilisateurs) {
+            let nomD = utilisateurs.username;
+            nomAffi.innerHTML = `${nomD}`;
+        });
+    })
+    .catch(function (error) {
+        console.log(JSON.stringify(error));
+});
+        }
     </script>
 </body>
 </html>
