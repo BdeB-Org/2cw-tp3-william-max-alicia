@@ -35,6 +35,10 @@
                         let userIdInt = parseInt(userId);
                         let nomDuProjet = projet.nom_projet
                         let description = projet.description;
+                        if (projet.utilisateurs_user_id === userIdInt) {
+                            const projectItem = document.createElement('li');
+                            const projectCount = projectList.getElementsByTagName('li').length + 1;
+                        }
                     });
 
                 })
