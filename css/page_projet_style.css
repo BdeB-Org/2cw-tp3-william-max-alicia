@@ -21,3 +21,17 @@ body {
     list-style-type: none;
     padding: 0;
 }
+
+.item-projet {
+    background-color: #fff;
+    color: #3c00a0;
+    padding: 40px;
+    margin: 5px 0;
+    border-radius: 5px;
+    transition: transform 0.2s;
+    width: 500px;
+}
+
+.item-projet:hover {
+    transform: scale(1.05);
+}
