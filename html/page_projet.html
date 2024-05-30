@@ -12,18 +12,7 @@
         <ul class="liste-projet" id="listeProjet1">
             <p id="nonProjetMessage">Aucun projet pour l'instant</p>
         </ul>
-        <ul class="liste-projet" id="listeProjet2">
-
-        </ul>
-        <ul class="liste-projet" id="listeProjet3">
-
-        </ul>
-        <ul class="liste-projet" id="listeProjet4">
-
-        </ul>
-        <ul class="liste-projet" id="listeProjet5">
-
-        </ul>
+        
         <br>
     </div>
     <script>
@@ -50,25 +39,25 @@
                         let description = projet.description;
                         let classeNom = projet.class_class_id2;
 
-                        if (classeNom == 1){
-                            const listeProjet = document.getElementById('listeProjet1');
-                        } else if (classeNom == 2){
-                            const listeProjet = document.getElementById('listeProjet2');
-                        } else if (classeNom == 3){
-                            const listeProjet = document.getElementById('listeProjet3');
-                        } else if (classeNom == 4){
-                            const listeProjet = document.getElementById('listeProjet4');
-                        } else if (classeNom == 5){
-                            const listeProjet = document.getElementById('listeProjet5');
-                        }
-
+                    
                         if (projet.utilisateurs_user_id === userIdInt) {
                             const itemProjet = document.createElement('li');
                             const comptProjet = listeProjet.getElementsByTagName('li').length + 1;
                             itemProjet.className = 'item-projet';
-                            itemProjet.innerHTML = `<u><b>Projet ${comptProjet}</b> : ${nomDuProjet}</u><br>
-                            <u>Description :</u><br>
-                            ${description}`;
+                            if (classeNom == 1){
+                                itemProjet.innerHTML = `<big><b><u>Classe:</b> Application Web</u></big>(Details ici)<br>
+                                <b>Projet ${comptProjet}</b> : ${nomDuProjet}<br>
+                                Description :<br> ${description}` ;
+                            } else if (classeNom == 2){
+                                itemProjet.innerHTML = `<b>Classe:</b> Programmation Objet 2`;
+                            } else if (classeNom == 3){
+                                itemProjet.innerHTML = `<b>Classe:</b> Mathematique`;
+                            } else if (classeNom == 4){
+                                itemProjet.innerHTML = `<b>Classe:</b> Philosophie`;
+                            }else if (classeNom == 5){
+                                itemProjet.innerHTML = `<b>Classe:</b> Éducation Physique`;
+                            }
+                            
                             listeProjet.appendChild(itemProjet);
                             document.getElementById('nonProjetMessage').style.display = 'none';
                         }
