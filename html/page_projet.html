@@ -29,13 +29,12 @@
                 .then(function (data) {
                     console.log(data); 
 
-                    let utilisateurs = data.items;
+                    let utilisateur = data;
                     const nomAffi = document.getElementById('nomAffichage');
 
-                    utilisateurs.forEach(function (utilisateurs) {
-                        let nomD = utilisateurs.username;
-                        nomAffi.innerHTML = `${nomD}`;
-                    });
+                    const nomD = utilisateur.username;
+                    nomAffi.textContent = `${nomD}`
+                    
                 })
                 .catch(function (error) {
                     console.log(JSON.stringify(error));
