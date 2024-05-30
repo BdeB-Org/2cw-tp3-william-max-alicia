@@ -58,6 +58,7 @@
                         let nomDuProjet = projet.nom_projet;
                         let description = projet.description;
                         let classeNom = projet.class_class_id2;
+                        let idProjet = projet.projet_id;
 
                     
                         if (projet.utilisateurs_user_id === userIdInt) {
@@ -65,24 +66,24 @@
                             const comptProjet = listeProjet.getElementsByTagName('li').length + 1;
                             itemProjet.className = 'item-projet';
                             if (classeNom == 1){
-                                itemProjet.innerHTML = `<big style="font-family: 'OCR A Std', monospace;"><b><u style="font-size: 32px;">Classe:</b> Application Web</u></big><a href="#" onclick="rediriger(1)"><span style="text-decoration: underline;">(Details ici)</span></a><br>
-                                <big style="font-size: 25px;"><b>Projet ${comptProjet}</b> : ${nomDuProjet}</big><br>
+                                itemProjet.innerHTML = `<big style="font-family: 'OCR A Std', monospace;"><b><u style="font-size: 32px;">Classe:</b> Application Web</u></big><a href="#" onclick="redirigerClass(1)"><span style="text-decoration: underline;">(Details ici)</span></a><br>
+                                <big style="font-size: 25px;"><b><a href="#" onclick="redirigerProjet(${idProjet})">Projet ${comptProjet}</b> : ${nomDuProjet}</a></big>(Tâches ici)<br>
                                 <u><b>Description :</b></u><br> ${description}` ;
                             } else if (classeNom == 2){
-                                itemProjet.innerHTML = `<big style="font-family: 'OCR A Std', monospace;"><b><u style="font-size: 32px;">Classe:</b> Programmation Objet 2</u></big><a href="#" onclick="rediriger(2)"><span style="text-decoration: underline;">(Details ici)</span></a><br>
-                                <big style="font-size: 25px;"><b>Projet ${comptProjet}</b> : ${nomDuProjet}</big><br>
+                                itemProjet.innerHTML = `<big style="font-family: 'OCR A Std', monospace;"><b><u style="font-size: 32px;">Classe:</b> Programmation Objet 2</u></big><a href="#" onclick="redirigerClass(2)"><span style="text-decoration: underline;">(Details ici)</span></a><br>
+                                <big style="font-size: 25px;"><b><a href="#" onclick="redirigerProjet(${idProjet})">Projet ${comptProjet}</b> : ${nomDuProjet}</a></big>(Tâches ici)<br>
                                 <u><b>Description :</b></u><br> ${description}` ;                            
                             } else if (classeNom == 3){
-                                itemProjet.innerHTML = `<big style="font-family: 'OCR A Std', monospace;"><b><u style="font-size: 32px;">Classe:</b> Mathématique</u></big><a href="#" onclick="rediriger(3)"><span style="text-decoration: underline;">(Details ici)</span></a><br>
-                                <big style="font-size: 25px;"><b>Projet ${comptProjet}</b> : ${nomDuProjet}</big><br>
+                                itemProjet.innerHTML = `<big style="font-family: 'OCR A Std', monospace;"><b><u style="font-size: 32px;">Classe:</b> Mathématique</u></big><a href="#" onclick="redirigerClass(3)"><span style="text-decoration: underline;">(Details ici)</span></a><br>
+                                <big style="font-size: 25px;"><b><a href="#" onclick="redirigerProjet(${idProjet})">Projet ${comptProjet}</b> : ${nomDuProjet}</a></big>(Tâches ici)<br>
                                 <u><b>Description :</b></u><br> ${description}` ;
                             } else if (classeNom == 4){
-                                itemProjet.innerHTML = `<big style="font-family: 'OCR A Std', monospace;"><b><u style="font-size: 32px;">Classe:</b> Philosophie</u></big><a href="#" onclick="rediriger(4)"><span style="text-decoration: underline;">(Details ici)</span></a><br>
-                                <big style="font-size: 25px;"><b>Projet ${comptProjet}</b> : ${nomDuProjet}</big><br>
+                                itemProjet.innerHTML = `<big style="font-family: 'OCR A Std', monospace;"><b><u style="font-size: 32px;">Classe:</b> Philosophie</u></big><a href="#" onclick="redirigerClass(4)"><span style="text-decoration: underline;">(Details ici)</span></a><br>
+                                <big style="font-size: 25px;"><b><a href="#" onclick="redirigerProjet(${idProjet})">Projet ${comptProjet}</b> : ${nomDuProjet}</a></big>(Tâches ici)<br>
                                 <u><b>Description :</b></u><br> ${description}` ;
                             }else if (classeNom == 5){
-                                itemProjet.innerHTML = `<big style="font-family: 'OCR A Std', monospace;"><b><u style="font-size: 32px;">Classe:</b> Éducation Physique</u></big><a href="#" onclick="rediriger(5)"><span style="text-decoration: underline;">(Details ici)</span></a><br>
-                                <big style="font-size: 25px;"><b>Projet ${comptProjet}</b> : ${nomDuProjet}</big><br>
+                                itemProjet.innerHTML = `<big style="font-family: 'OCR A Std', monospace;"><b><u style="font-size: 32px;">Classe:</b> Éducation Physique</u></big><a href="#" onclick="redirigerClass(5)"><span style="text-decoration: underline;">(Details ici)</span></a><br>
+                                <big style="font-size: 25px;"><b><a href="#" onclick="redirigerProjet(${idProjet})">Projet ${comptProjet}</b> : ${nomDuProjet}</a></big>(Tâches ici)<br>
                                 <u><b>Description :</b></u><br> ${description}` ;
                             }
                             
@@ -97,10 +98,15 @@
             });
         }
 
-        function rediriger(classCode){
-        localStorage.setItem('classCode', classCode);
-        window.location.href = "./page_class.html";
+        function redirigerClass(classCode){
+            localStorage.setItem('classCode', classCode);
+            window.location.href = "./page_class.html";
         }
+
+        function redirigerProjet(projetCode) {
+            localStorage.setItem('projetCode', projetCode);
+            window.location.href = "./page_tache.html";
+        };
 
     </script>
 </body>
