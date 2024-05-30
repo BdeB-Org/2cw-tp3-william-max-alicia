@@ -22,7 +22,7 @@
         };
 
         function affichageNom(userId){
-            const url = `http://localhost:8080/ords/restscott/utilisateurs/1`; 
+            const url = `http://localhost:8080/ords/restscott/utilisateurs/${userId}`; 
 
             fetch(url)
                 .then((resp) => resp.json())
