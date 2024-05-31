@@ -14,101 +14,120 @@
             <form id="login-form">
                 <div class="input-group">
                     <div class="input-field" id="nameField">
+                        <!-- Icône utilisateur et champ de saisie pour le nom d'utilisateur -->
                         <i class="fa-solid fa-user"></i>
                         <input type="text" id="username" name="username" placeholder="Name">
                     </div>
                     
                     <div class="input-field">
+                        <!-- Icône e-mail et champ de saisie pour l'e-mail -->
                         <i class="fa-solid fa-envelope"></i>
                         <input type="email" id="email" name="email" placeholder="Email">
                     </div>
 
                     <div class="input-field">
+                        <!-- Icône mot de passe et champ de saisie pour le mot de passe -->
                         <i class="fa-solid fa-lock"></i>
                         <input type="password" id="password" name="password" placeholder="Password">
                     </div>
                     
                     <div class="btn-field">
+                        <!-- Boutons pour s'inscrire et se connecter -->
                         <button type="button" id="signupBtn">S'inscrire</button>
                         <button type="button" id="signinBtn" class="disable">Se connecter</button>
                     </div>
-
                 </div>
-            <div id="error-message" style="color: red;"></div>
-        </form>
-    </div>
-</div>    
+                <!-- Zone pour afficher les messages d'erreur -->
+                <div id="error-message" style="color: red;"></div>
+            </form>
+        </div>
+    </div>    
 
     <script>
+        // Récupération des éléments du DOM
         let signupBtn = document.getElementById("signupBtn");
         let signinBtn = document.getElementById("signinBtn");
         let nameField = document.getElementById("nameField");
         let title = document.getElementById("title");
 
+        // Fonction pour gérer le clic sur le bouton de connexion
         signinBtn.onclick = function(){
+            // Masquer le champ de nom et changer le titre
             nameField.style.maxHeight = "0";
             title.innerHTML = "Sign In";
+            // Activer/désactiver les boutons
             signupBtn.classList.add("disable");
             signinBtn.classList.remove("disable");
 
+            // Récupérer les valeurs des champs e-mail et mot de passe et appeler la fonction de connexion
             let emailInput = document.getElementById('email').value;
             let passwordInput = document.getElementById('password').value;
             login(emailInput, passwordInput);
         }
 
+        // Fonction pour gérer le clic sur le bouton d'inscription
         signupBtn.onclick = function(){
+            // Afficher le champ de nom et changer le titre
             nameField.style.maxHeight = "60px";
             title.innerHTML = "Sign Up";
+            // Activer/désactiver les boutons
             signupBtn.classList.remove("disable");
             signinBtn.classList.add("disable");
+            // Appeler la fonction d'enregistrement (à définir)
             enregistrerUser();
         }
 
+        // Fonction de connexion
         function login() {
-  const emailInput = document.getElementById('email').value;
-  const passwordInput = document.getElementById('password').value;
-  const url = 'http://localhost:8080/ords/restscott/utilisateurs/';
+            // Récupérer les valeurs des champs e-mail et mot de passe
+            const emailInput = document.getElementById('email').value;
+            const passwordInput = document.getElementById('password').value;
+            const url = 'http://localhost:8080/ords/restscott/utilisateurs/';
 
-  fetch(url)
-    .then((resp) => resp.json())
-    .then(function(data) {
-      console.log(data); 
-      let utilisateurs = data.items;
-      let userCode = null;
-      let userFound = false;
-      let isPasswordCorrect = false;
+            // Faire une requête à l'API pour récupérer les utilisateurs
+            fetch(url)
+                .then((resp) => resp.json())
+                .then(function(data) {
+                    console.log(data); 
+                    let utilisateurs = data.items;
+                    let userCode = null;
+                    let userFound = false;
+                    let isPasswordCorrect = false;
 
-      utilisateurs.forEach(function(utilisateur) {
-        if (utilisateur.email === emailInput) {
-          userFound = true;
-          if (utilisateur.motdepasse === passwordInput) {
-            isPasswordCorrect = true;
-            userCode = utilisateur.user_id;
-          }
+                    // Vérifier les informations de connexion
+                    utilisateurs.forEach(function(utilisateur) {
+                        if (utilisateur.email === emailInput) {
+                            userFound = true;
+                            if (utilisateur.motdepasse === passwordInput) {
+                                isPasswordCorrect = true;
+                                userCode = utilisateur.user_id;
+                            }
+                        }
+                    });
+
+                    // Afficher les résultats de la vérification
+                    if (userFound && isPasswordCorrect) {
+                        console.log("Connexion réussie ! ID de l'utilisateur : ", userCode);
+                        localStorage.setItem('userCode', userCode);
+                        localStorage.setItem('email', emailInput);
+                        rediriger(userCode);
+                    } else if (userFound) {
+                        console.log("Mot de passe invalide");
+                    } else {
+                        console.log("Email invalide");
+                    }
+                })
+                .catch(function(error) {
+                    console.log(JSON.stringify(error));
+                });
         }
-      });
 
-      if (userFound && isPasswordCorrect) {
-        console.log("Connexion réussi ! ID de l'utilisateur : ", userCode);
-        localStorage.setItem('userCode', userCode);
-        localStorage.setItem('email', emailInput);
-        rediriger(userCode);
-      } else if (userFound) {
-        console.log("Mot de passe invalide");
-      } else {
-        console.log("email invalide");
-      }
-    })
-    .catch(function(error) {
-      console.log(JSON.stringify(error));
-    });
-}
-
-function rediriger(userCode){
-    localStorage.setItem('userCode', userCode);
-    window.location.href = "./HTML/page_projet.html";
-
-}
+        // Fonction de redirection après connexion réussie
+        function rediriger(userCode){
+            localStorage.setItem('userCode', userCode);
+            window.location.href = "./HTML/page_projet.html";
+        }
     </script>
 </body>
 </html>
+s
