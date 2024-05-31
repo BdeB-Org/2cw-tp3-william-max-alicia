@@ -54,7 +54,7 @@
 #tache-table td {
     border: 1px solid #ccc;
     padding: 10px;
-    text-align: center; /* Center the text in table cells */
+    text-align: center;
 }
 
 #tache-table th {

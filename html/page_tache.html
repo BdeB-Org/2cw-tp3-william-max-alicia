@@ -12,7 +12,7 @@
 <body>
     <div class="fond">
         <div class="TitreCase">
-            <h1 id="Titre"> ProjetNom </h1>
+            <h1 id="Titre">Nom projet</h1>
         </div>
     </div>
     <div class="tacheBoite">
@@ -22,34 +22,55 @@
                     <th>Tâche à completer :</th>
                 </tr>
             </thead>
+            <tbody></tbody>
         </table>
     </div>
-    </div>
     <script>
-
         window.onload = function () {
             const projetId = localStorage.getItem('projetCode');
-            affichageTaches(projetId)
+            fetchProjectName(projetId);
+            affichageTaches(projetId);
         };
 
+        function fetchProjectName(projetId) {
+            const projectUrl = `http://localhost:8080/ords/restscott/projet/?q={"projet_id":${projetId}}`;
+                fetch (projectUrl)
+                    .then((resp) => resp.json())
+                    .then(function (data) {
+                        console.log(data);
+                        let projets = data.items;
+                        let projectFound = false;
+
+                        projets.forEach(function (projet) {
+                            if (projet.projet_id == projetId) {
+                                projectFound = true;
+                                document.getElementById('Titre').textContent = projet.nom_projet;
+                            }
+                        });
+
+                        if (!projectFound) {
+                            document.getElementById('Titre').textContent = `Projet ID: ${projetId}`;
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(JSON.stringify(error));
+                    });
+        }
+
         function affichageTaches(projetId) {
-            const url = `http://localhost:8080/ords/restscott/task/?projet_id=${projetId}`
+            const url = `http://localhost:8080/ords/restscott/task/?q={"projet_projet_id":${projetId}}`;
+
             fetch(url)
                 .then((resp) => resp.json())
                 .then(function (data) {
-                    console.log(data);
-                    
-                    const projectTitle = data.items[0].PROJET_NOM;
-                    document.getElementById('Titre').textContent = projectTitle;
-
                     const table = document.getElementById('tache-table').querySelector('tbody');
-                    table.innerHTML = ''; 
+                    table.innerHTML = '';
 
                     data.items.forEach(task => {
                         const tr = document.createElement('tr');
                         const td = document.createElement('td');
-                        td.className = 'item-projet'; 
-                        td.textContent = task.NOM_TASK;
+                        td.className = 'item-projet';
+                        td.textContent = task.nom_task;
                         tr.appendChild(td);
                         table.appendChild(tr);
                     });
@@ -57,7 +78,6 @@
                 .catch(function (error) {
                     console.log(JSON.stringify(error));
                 });
-
         }
     </script>
 
