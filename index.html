@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login MyToDoList</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/bf6715c499.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="fond">
+        <div class="form-box">
+            <h1 id="title">Sign Up</h1>
+            <form id="login-form">
+                <div class="input-group">
+                    <div class="input-field" id="nameField">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" id="username" name="username" placeholder="Name">
+                    </div>
+                    
+                    <div class="input-field">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="email" id="email" name="email" placeholder="Email">
+                    </div>
+
+                    <div class="input-field">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" id="password" name="password" placeholder="Password">
+                    </div>
+                    
+                    <div class="btn-field">
+                        <button type="button" id="signupBtn">S'inscrire</button>
+                        <button type="button" id="signinBtn" class="disable">Se connecter</button>
+                    </div>
+
+                </div>
+            <div id="error-message" style="color: red;"></div>
+        </form>
+    </div>
+</div>    
+
+    <script>
+        let signupBtn = document.getElementById("signupBtn");
+        let signinBtn = document.getElementById("signinBtn");
+        let nameField = document.getElementById("nameField");
+        let title = document.getElementById("title");
+
+        signinBtn.onclick = function(){
+            nameField.style.maxHeight = "0";
+            title.innerHTML = "Sign In";
+            signupBtn.classList.add("disable");
+            signinBtn.classList.remove("disable");
+
+            let emailInput = document.getElementById('email').value;
+            let passwordInput = document.getElementById('password').value;
+            login(emailInput, passwordInput);
+        }
+
+        signupBtn.onclick = function(){
+            nameField.style.maxHeight = "60px";
+            title.innerHTML = "Sign Up";
+            signupBtn.classList.remove("disable");
+            signinBtn.classList.add("disable");
+            enregistrerUser();
+        }
+
+        function login() {
+  const emailInput = document.getElementById('email').value;
+  const passwordInput = document.getElementById('password').value;
+  const url = 'http://localhost:8080/ords/restscott/utilisateurs/';
+
+  fetch(url)
+    .then((resp) => resp.json())
+    .then(function(data) {
+      console.log(data); 
+      let utilisateurs = data.items;
+      let userCode = null;
+      let userFound = false;
+      let isPasswordCorrect = false;
+
+      utilisateurs.forEach(function(utilisateur) {
+        if (utilisateur.email === emailInput) {
+          userFound = true;
+          if (utilisateur.motdepasse === passwordInput) {
+            isPasswordCorrect = true;
+            userCode = utilisateur.user_id;
+          }
+        }
+      });
+
+      if (userFound && isPasswordCorrect) {
+        console.log("Connexion réussi ! ID de l'utilisateur : ", userCode);
+        localStorage.setItem('userCode', userCode);
+        localStorage.setItem('email', emailInput);
+        rediriger(userCode);
+      } else if (userFound) {
+        console.log("Mot de passe invalide");
+      } else {
+        console.log("email invalide");
+      }
+    })
+    .catch(function(error) {
+      console.log(JSON.stringify(error));
+    });
+}
+
+function rediriger(userCode){
+    localStorage.setItem('userCode', userCode);
+    window.location.href = "./HTML/page_projet.html";
+
+}
+    </script>
+</body>
+</html>
