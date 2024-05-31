@@ -1,3 +1,4 @@
+/* Style sur la page en elle-même */
 body {
     font-family: Arial, sans-serif;
     background-color: #3c00a0;
@@ -8,20 +9,24 @@ body {
     margin: 0;
 }
 
+/* Style pour centrer les éléments */
 .conteneur {
     text-align: center;
 }
 
+/* Style pour espacer */
 .h1 {
     margin-bottom: 20px;
 }
 
+/* Style pour la liste */
 .liste-projet {
     list-style-type: none;
     padding: 0;
 }
 
 
+/* Style pour créer une box blanche une fois la mise en place d'un projet*/
 .item-projet {
     background-color: #fff;
     color: #3c00a0;
@@ -32,6 +37,7 @@ body {
     width: 700px;
 }
 
+/* Style pour le hover sur les projets */
 .item-projet:hover {
     transform: scale(1.05);
 }

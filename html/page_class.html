@@ -5,28 +5,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page de la classe</title>
-    <link rel="stylesheet" href="../css/page_class_style.css">
+    <link rel="stylesheet" href="../css/page_class_style.css"> <!--Path vers le css-->
 </head>
 
 <body>
-    <div class="conteneur">
-        <h1 id="nomDeLaClasse"></h1>
-        <p class="tab-class" id="tabClass">
+    <div class="conteneur"> <!--contient les éléments centrés-->
+        <h1 id="nomDeLaClasse"></h1> <!--affiche le nom de la classe-->
+        <p class="tab-class" id="tabClass"> <!--texte de la classe-->
         </p>
         <br>
     </div>
     <script>
+        /*Prendre en compte la classe avec cette fonction*/
         window.onload = function () {
             const classId = localStorage.getItem('classCode');
             affichageClass(classId);
         };
 
+        /* Cette fonction permet d'afficher le nom de la classe et le texte selon le cours en question */ 
         function affichageClass(classId) {
             let nomClasse = document.getElementById('nomDeLaClasse');
             let elementTexte = document.getElementById('tabClass');
             elementTexte.className = 'tab-class';
 
-
+            /* condition pour afficher le texte selon la classe */
            if (classId == 1){
             nomClasse.innerHTML = "Application Web";
             elementTexte.innerHTML = "Le cours Application Web explore la conception et le développement d'applications web, couvrant les principes fondamentaux et les technologies clés.<br> Les étudiants apprennent à concevoir des interfaces utilisateur interactives et conviviales, à utiliser des langages de programmation côté client tels que HTML, CSS et JavaScript, ainsi que des frameworks comme React ou Angular.<br> La gestion des données est abordée à travers des bases de données relationnelles ou NoSQL et des API RESTful.<br>Les sujets avancés incluent la sécurité des applications web, l'optimisation des performances et le déploiement sur des serveurs web. Les aspects collaboratifs du développement web, comme le contrôle de version avec Git et les méthodes de travail en équipe, sont également explorés. En mettant l'accent sur la pratique, ce cours combine théorie et projets pratiques pour doter les étudiants des compétences nécessaires pour créer des applications web fonctionnelles et attrayantes."

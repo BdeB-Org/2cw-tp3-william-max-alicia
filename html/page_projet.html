@@ -4,23 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page des projets</title>
-    <link rel="stylesheet" href="../css/page_projet_style.css">
-</head>
+    
+    <link rel="stylesheet" href="../css/page_projet_style.css"> <!--Path vers le css-->
 <body>
-    <div class="conteneur">
-        <h1>Liste des projets de <span id="nomAffichage">???</span></h1>
-        <ul class="liste-projet" id="listeProjet1">
+    <div class="conteneur"> <!--contient les éléments centrés-->
+        <h1>Liste des projets de <span id="nomAffichage">???</span></h1> <!--affiche comme content Liste du projet puis met le nom de l'utilisateur-->
+        <ul class="liste-projet" id="listeProjet1"> <!--liste du projetr-->
             <p id="nonProjetMessage">Aucun projet pour l'instant</p>
         </ul>
         <br>
     </div>
     <script>
+        /*Prendre en compte l'utilisateur avec cette fonction*/
         window.onload = function () {
             const userId = localStorage.getItem('userCode');
             affichageNom(userId);
             projetSelonUser(userId);
         };
 
+        /*Affiche le nom de l'utilisateur avec cette fonction*/
         function affichageNom(userId){
             const url = `http://localhost:8080/ords/restscott/utilisateurs/${userId}`; 
 
@@ -41,6 +43,7 @@
             });
         }
 
+        /*Affiche la liste des projets*/
         function projetSelonUser(userId) {
             const url = `http://localhost:8080/ords/restscott/projet?user_id=${userId}`; 
     
@@ -60,7 +63,7 @@
                         let classeNom = projet.class_class_id2;
                         let idProjet = projet.projet_id;
 
-                    
+                        /* ajoute fur à mesure une balise li pour chaque projet dépendamment de la classe */
                         if (projet.utilisateurs_user_id === userIdInt) {
                             const itemProjet = document.createElement('li');
                             const comptProjet = listeProjet.getElementsByTagName('li').length + 1;
@@ -98,11 +101,13 @@
             });
         }
 
+        /* diriger la classe en conséquence vers la page class */
         function redirigerClass(classCode){
             localStorage.setItem('classCode', classCode);
             window.location.href = "./page_class.html";
         }
 
+        /* diriger le projet en conséquence vers la page projet */
         function redirigerProjet(projetCode) {
             localStorage.setItem('projetCode', projetCode);
             window.location.href = "./page_tache.html";
