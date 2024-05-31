@@ -27,35 +27,38 @@
     </div>
     <script>
 
-        window.onload = function() {
+        window.onload = function () {
             const projetId = localStorage.getItem('projetCode');
             affichageTaches(projetId)
         };
 
         function affichageTaches(projetId) {
             const url = `http://localhost:8080/ords/restscott/task/?projet_id=${projetId}`
+            fetch(url)
+                .then((resp) => resp.json())
+                .then(function (data) {
+                    console.log(data);
+                    
+                    const projectTitle = data.items[0].PROJET_NOM;
+                    document.getElementById('Titre').textContent = projectTitle;
+
+                    const table = document.getElementById('tache-table').querySelector('tbody');
+                    table.innerHTML = ''; 
+
+                    data.items.forEach(task => {
+                        const tr = document.createElement('tr');
+                        const td = document.createElement('td');
+                        td.className = 'item-projet'; 
+                        td.textContent = task.NOM_TASK;
+                        tr.appendChild(td);
+                        table.appendChild(tr);
+                    });
+                })
+                .catch(function (error) {
+                    console.log(JSON.stringify(error));
+                });
+
         }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const tasks = [
-                { id: 1, name: 'Tâche 1' },
-                { id: 2, name: 'Tâche 2' },
-                { id: 3, name: 'Tâche 3' }
-            ];
-
-            const table = document.getElementById('tache-table');
-            const tbody = document.createElement('tbody');
-
-            tasks.forEach(task => {
-                const tr = document.createElement('tr');
-                const td = document.createElement('td');
-                td.textContent = task.name;
-                tr.appendChild(td);
-                tbody.appendChild(tr);
-            });
-
-            table.appendChild(tbody);
-        });
     </script>
 
 </body>
