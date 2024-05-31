@@ -1,0 +1,76 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+.fond {
+    width: 100%;
+    height: 100vh;
+    background-color: #3c00a0;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+
+.TitreCase {
+    width: 25%;
+    max-width: 450px;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    height: 37.5px;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.TitreCase h1 {
+    color: #fff;
+    font-size: 50px;
+}
+
+.tacheBoite {
+    width: 100%;
+    max-width: 600px;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 50%;
+    background: #fff;
+    padding: 20px;
+    text-align: center;
+    border-radius: 3px;
+    overflow-y: auto;
+}
+
+#tache-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#tache-table th,
+#tache-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center; /* Center the text in table cells */
+}
+
+#tache-table th {
+    background-color: #f2f2f2;
+}
+
+.item-projet {
+    background-color: #fff;
+    color: #3c00a0;
+    padding: 40px;
+    margin: 5px 0;
+    border-radius: 5px;
+    transition: transform 0.2s;
+    width: 700px;
+}
+
+.item-projet:hover {
+    transform: scale(1.05);
+}

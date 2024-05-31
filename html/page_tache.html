@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page_tâche</title>
+    <link rel="stylesheet" href="/css/page_tache_style.css">
+    <script src="https://kit.fontawesome.com/bf6715c499.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="fond">
+        <div class="TitreCase">
+            <h1 id="Titre"> ProjetNom </h1>
+        </div>
+    </div>
+    <div class="tacheBoite">
+        <table id="tache-table">
+            <thead>
+                <tr>
+                    <th>Tâche à completer :</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    </div>
+    <script>
+
+        window.onload = function () {
+            const projetId = localStorage.getItem('projetCode');
+            affichageTaches(projetId)
+        };
+
+        function affichageTaches(projetId) {
+            const url = `http://localhost:8080/ords/restscott/task/?projet_id=${projetId}`
+            fetch(url)
+                .then((resp) => resp.json())
+                .then(function (data) {
+                    console.log(data);
+                    
+                    const projectTitle = data.items[0].PROJET_NOM;
+                    document.getElementById('Titre').textContent = projectTitle;
+
+                    const table = document.getElementById('tache-table').querySelector('tbody');
+                    table.innerHTML = ''; 
+
+                    data.items.forEach(task => {
+                        const tr = document.createElement('tr');
+                        const td = document.createElement('td');
+                        td.className = 'item-projet'; 
+                        td.textContent = task.NOM_TASK;
+                        tr.appendChild(td);
+                        table.appendChild(tr);
+                    });
+                })
+                .catch(function (error) {
+                    console.log(JSON.stringify(error));
+                });
+
+        }
+    </script>
+
+</body>
+
+</html>
