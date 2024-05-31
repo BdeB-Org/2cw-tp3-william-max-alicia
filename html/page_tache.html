@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,44 +8,56 @@
     <link rel="stylesheet" href="/css/page_tache_style.css">
     <script src="https://kit.fontawesome.com/bf6715c499.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
     <div class="fond">
-        <div class="TitreCase"> 
-            <h1 id="Titre"> ProjetNom </h1> 
+        <div class="TitreCase">
+            <h1 id="Titre"> ProjetNom </h1>
         </div>
     </div>
-    <div class="tacheBox">
+    <div class="tacheBoite">
         <table id="tache-table">
-        <thead>
-            <tr>
-                <th>Tâche</th>
-            </tr>
-        </thead>
-    </table>
+            <thead>
+                <tr>
+                    <th>Tâche à completer :</th>
+                </tr>
+            </thead>
+        </table>
     </div>
-</div>
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const tasks = [
-            { id: 1, name: 'Tâche 1' },
-            { id: 2, name: 'Tâche 2' },
-            { id: 3, name: 'Tâche 3' }
-        ];
+    </div>
+    <script>
 
-        const table = document.getElementById('tache-table');
-        const tbody = document.createElement('tbody');
+        window.onload = function() {
+            const projetId = localStorage.getItem('projetCode');
+            affichageTaches(projetId)
+        };
 
-        tasks.forEach(task => {
-            const tr = document.createElement('tr');
-            const td = document.createElement('td');
-            td.textContent = task.name;
-            tr.appendChild(td);
-            tbody.appendChild(tr);
+        function affichageTaches(projetId) {
+            const url = `http://localhost:8080/ords/restscott/task/?projet_id=${projetId}`
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const tasks = [
+                { id: 1, name: 'Tâche 1' },
+                { id: 2, name: 'Tâche 2' },
+                { id: 3, name: 'Tâche 3' }
+            ];
+
+            const table = document.getElementById('tache-table');
+            const tbody = document.createElement('tbody');
+
+            tasks.forEach(task => {
+                const tr = document.createElement('tr');
+                const td = document.createElement('td');
+                td.textContent = task.name;
+                tr.appendChild(td);
+                tbody.appendChild(tr);
+            });
+
+            table.appendChild(tbody);
         });
+    </script>
 
-        table.appendChild(tbody);
-    });
-</script>
-    
 </body>
+
 </html>
